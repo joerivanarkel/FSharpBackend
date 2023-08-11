@@ -3,6 +3,7 @@ namespace joerivanarkel.Api.Controllers
 open Microsoft.Extensions.Logging
 open Microsoft.AspNetCore.Mvc
 open joerivanarkel.Data.Repositories
+open joerivanarkel.Api.Models
 open joerivanarkel.Data.Models
 
 [<ApiController>]
@@ -21,16 +22,19 @@ type CountryController (logger: ILogger<CountryController>, countryRepository:IC
         countryRepository.GetCountry(id) 
 
     [<HttpPost>]
-    member _.Post(country) =
+    member _.Post([<FromBody>] country: CountryRequest): IActionResult =
         logger.LogInformation("Create country")
-        countryRepository.CreateCountry(country) |> Ok
+        countryRepository.CreateCountry(country.Map()) |> ignore
+        base.Ok() :> IActionResult
 
     [<HttpPut>]
-    member _.Put(country) =
+    member _.Put([<FromBody>] country) : IActionResult =
         logger.LogInformation("Update country")
-        countryRepository.UpdateCountry(country) |> Ok
+        countryRepository.UpdateCountry(country) |> ignore
+        base.Ok() :> IActionResult
 
-    [<HttpDelete("{id}")>]
-    member _.Delete(id) =
+    [<HttpDelete>]
+    member _.Delete([<FromBody>] country) : IActionResult =
         logger.LogInformation("Delete country")
-        countryRepository.DeleteCountry(id) |> Ok
+        countryRepository.DeleteCountry(country) |> ignore
+        base.Ok() :> IActionResult

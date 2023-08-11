@@ -2,6 +2,9 @@ namespace joerivanarkel.Data
 
 open Microsoft.EntityFrameworkCore
 open joerivanarkel.Data.Models
+open EntityFrameworkCore.FSharp
+open Microsoft.EntityFrameworkCore.Design
+open Microsoft.Extensions.DependencyInjection
 
 type Database() =
     inherit DbContext()
@@ -13,8 +16,15 @@ type Database() =
         with get() = this.countries
         and set(value) = this.countries <- value
 
-    override this.OnConfiguring(optionsBuilder : DbContextOptionsBuilder) =
+    override _.OnConfiguring(optionsBuilder : DbContextOptionsBuilder) =
         optionsBuilder.UseSqlite("Data Source=database.db") |> ignore
 
-    override this.OnModelCreating(modelBuilder : ModelBuilder) =
+    override _.OnModelCreating(modelBuilder : ModelBuilder) =
         modelBuilder.Entity<Country>().ToTable("countries") |> ignore
+
+type DesignTimeServices() =
+    interface IDesignTimeServices with 
+        member __.ConfigureDesignTimeServices(serviceCollection: IServiceCollection) = 
+            let fSharpServices= EFCoreFSharpServices() :> IDesignTimeServices
+            fSharpServices.ConfigureDesignTimeServices serviceCollection
+            ()

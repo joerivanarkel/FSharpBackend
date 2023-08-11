@@ -1,4 +1,4 @@
-namespace joerivanarkel.Api
+namespace joerivanarkel.Api.Models
 
 open System
 

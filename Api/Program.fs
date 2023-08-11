@@ -1,13 +1,15 @@
 namespace joerivanarkel.Api
 #nowarn "20"
+
 open Microsoft.AspNetCore.Builder
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Hosting
 open Microsoft.OpenApi.Models
 
+open joerivanarkel.Data.Repositories
+open joerivanarkel.Data
+
 module Program =
-    open joerivanarkel.Data.Repositories
-    open joerivanarkel.Data
     let exitCode = 0
 
     [<EntryPoint>]
@@ -21,7 +23,7 @@ module Program =
         )
 
         builder.Services.AddScoped<ICountryRepository, CountryRepository>()
-        builder.Services.AddDbContext<Database>()
+        builder.Services.AddDbContext<Database>() |> ignore
 
         let app = builder.Build()
 

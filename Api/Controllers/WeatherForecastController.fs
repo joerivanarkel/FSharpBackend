@@ -3,7 +3,7 @@
 open System
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Logging
-open joerivanarkel.Api
+open joerivanarkel.Api.Models
 
 [<ApiController>]
 [<Route("[controller]")>]

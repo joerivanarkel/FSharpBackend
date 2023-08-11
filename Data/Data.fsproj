@@ -7,13 +7,17 @@
     <Compile Include="Models/Country.fs" />
     <Compile Include="Database.fs" />
     <Compile Include="Repositories\CountryRepository.fs" />
+
+    <Compile Include="Migrations\20230811130530_Initial.fs" />
+    <Compile Include="Migrations\DatabaseModelSnapshot.fs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
+    <PackageReference Include="EntityFrameworkCore.FSharp" Version="6.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.21" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.21">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.21" />
   </ItemGroup>
 </Project>

@@ -8,8 +8,8 @@
     <Compile Include="Database.fs" />
     <Compile Include="Repositories\CountryRepository.fs" />
 
-    <Compile Include="Migrations\20230811130530_Initial.fs" />
-    <Compile Include="Migrations\DatabaseModelSnapshot.fs" />
+    <!-- <Compile Include="Migrations\20230811130530_Initial.fs" />
+    <Compile Include="Migrations\DatabaseModelSnapshot.fs" /> -->
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EntityFrameworkCore.FSharp" Version="6.0.7" />
